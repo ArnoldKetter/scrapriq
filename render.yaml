@@ -1,0 +1,14 @@
+# render.yaml
+services:
+  - type: web
+    name: scrapriq-api
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn scrapriq.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: https://xqzpiihbsujgydvevdli.supabase.co
+        sync: false # Set this to false for sensitive data to prevent it from being synced to git
+      - key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxenBpaWhic3VqZ3lkdmV2ZGxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE4OTY0NzUsImV4cCI6MjA2NzQ3MjQ3NX0.LbAgo-TFaupSf-ll34q9b3Dg75KFDFulkaUimWATkm4
+        sync: false
+      - key: 37b2f353ac7fb52c775692b369863a686760ff30822909138f13cd4ce5c1747d
+        sync: false
