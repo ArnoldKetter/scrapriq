@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+supabase-py
+requests
+beautifulsoup4
+scrapy
