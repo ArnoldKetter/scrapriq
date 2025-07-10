@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 import uuid # For generating unique IDs if needed before DB insertion
 
-from supabase import get_supabase_client
+from scrapriq.supabase import get_supabase_client
 from scrapers.static_scraper import scrape_static_pages
 from scrapers.linkedin_scraper import search_linkedin_profiles
 from utils.email_guesser import generate_email_guesses
