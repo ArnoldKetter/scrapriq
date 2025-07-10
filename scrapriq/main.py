@@ -1,29 +1,16 @@
 # scrapriq/main.py
 from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
 import uuid # For generating unique IDs if needed before DB insertion
-import os
 
-from scrapriq.supabase import get_supabase_client
+from supabase import get_supabase_client
 from scrapriq.scrapers.static_scraper import scrape_static_pages
 from scrapriq.scrapers.linkedin_scraper import search_linkedin_profiles
 from utils.email_guesser import generate_email_guesses
 from services.aggregator import aggregate_employee_data
 
 app = FastAPI(title="ScraprIQ Backend MVP")
-
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(","),
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Initialize Supabase client
 supabase = get_supabase_client()
 
 # Pydantic models for API input/output validation
