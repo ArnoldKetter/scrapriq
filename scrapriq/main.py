@@ -7,8 +7,8 @@ import uuid # For generating unique IDs if needed before DB insertion
 import os
 
 from scrapriq.supabase import get_supabase_client
-from scrapers.static_scraper import scrape_static_pages
-from scrapers.linkedin_scraper import search_linkedin_profiles
+from scrapriq.scrapers.static_scraper import scrape_static_pages
+from scrapriq.scrapers.linkedin_scraper import search_linkedin_profiles
 from utils.email_guesser import generate_email_guesses
 from services.aggregator import aggregate_employee_data
 
