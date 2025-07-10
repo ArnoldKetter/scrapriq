@@ -3,9 +3,9 @@ services:
   - type: web
     name: scrapriq-api
     env: python
-    pythonVersion: 3.12.6
+    pythonVersion: 3.10.12
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "uvicorn scrapriq.main:app --host 0.0.0.0 --port $PORT"
+    startCommand: "python -m uvicorn scrapriq.main:app --host 0.0.0.0 --port $PORT" # Changed here
     envVars:
       - key: SUPABASE_URL
         sync: false # Set this to false for sensitive data to prevent it from being synced to git
