@@ -3,13 +3,15 @@ services:
   - type: web
     name: scrapriq-api
     env: python
-    pythonVersion: 3.10.12
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python -m uvicorn scrapriq.main:app --host 0.0.0.0 --port $PORT" # Changed here
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn scrapriq.main:app -k uvicorn.workers.UvicornWorker -w 4 --bind 0.0.0.0:$PORT
     envVars:
       - key: SUPABASE_URL
-        sync: false # Set this to false for sensitive data to prevent it from being synced to git
+        sync: false
       - key: SUPABASE_KEY
         sync: false
       - key: SERP_API_KEY
         sync: false
+      - key: ALLOWED_ORIGINS
+        value: "https://your-frontend-domain.com"  # Replace with your actual frontend domain
+    healthCheckPath: /docs  # FastAPI's OpenAPI docs endpoint for health checks
